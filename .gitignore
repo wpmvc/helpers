@@ -5,3 +5,5 @@ phpcs-report.xml
 yarn.lock
 package-lock.json
 composer.lock
+.phpunit.result.cache
+phpunit-report.xml

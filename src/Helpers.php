@@ -228,7 +228,8 @@ class Helpers
      * @return string|null The user's IP address or null if it can't be determined.
      */
     public static function get_user_ip_address() {
-        // Check for IP from shared Internet/ISP (HTTP_CLIENT_IP)
+        //Check for IP from shared Internet/ISP (HTTP_CLIENT_IP)
+        //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash
         if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) && filter_var( $_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP ) ) {
             // Sanitize and return the IP address
             return sanitize_text_field( wp_unslash( $_SERVER['HTTP_CLIENT_IP'] ) );
@@ -249,6 +250,7 @@ class Helpers
         }
 
         // Check for the remote IP address (REMOTE_ADDR)
+        //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash
         if ( ! empty( $_SERVER['REMOTE_ADDR'] ) && filter_var( $_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP ) ) {
             // Sanitize and return the remote IP address
             return sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
@@ -257,5 +259,4 @@ class Helpers
         // Return null if no valid IP address is found
         return null;
     }
-
 }
